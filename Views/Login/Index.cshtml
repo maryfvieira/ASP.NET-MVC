@@ -1,0 +1,45 @@
+﻿@model ProjetoMVC.Models.LoginModel
+@{
+    Layout = "Deslogado";
+    ViewData["title"] = "Login";
+}
+
+<div class="PagLogin">
+    <div class="login" style="--bs-columns: 3;">
+            <div class= "title"style="text-align:center;">
+                <h1>Sp Medical Group </h1>
+            </div>
+        <div>
+
+            @if (TempData["MensagemErro"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" arial-label="Close">X</button>
+                    @TempData["MensagemErro"]
+                 </div>
+            }
+
+            <form asp-controller="Login"  asp-action="Logar" method="post">
+                <div class="form-group">
+                    <label for="Email">Endereço de E-mail</label>
+                    <input type="text" asp-for="Email" class="form-control" id="Email" placeholder="Seu E-mail">
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+                <div class="form-group">
+                    <label for="Senha">Senha</label>
+                    <input type="password"  asp-for="Senha" class="form-control" id="Senha" placeholder="Senha">
+                    @Html.ValidationMessageFor(x => x.Senha)
+                </div>
+                <br>
+                <div style="text-align:center;" class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <a asp-controller="Usuario" asp-action="Editar" style="text-decoration: none; color:black;" class="EsqSenha">Esqueceu a senha?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="NewCont">
+       <p> Não tem uma conta ? <a style="text-decoration: none;" asp-controller="Usuario" asp-action="Criar">Cadastre-se</a></p>
+    </div>
+</div>
+  
